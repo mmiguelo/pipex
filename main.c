@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:49:48 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/03 14:54:46 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:47:22 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,16 @@ void	child(int *fd, char **av, char **envp)
 	int	fd_child;
 
 	close(fd[0]);
-	write(fd[1], &fd_child, );
-	close(fd[1]);
+	fd_child = open(av[1], O_RDONLY, 444);
+	if (fd_child == -1)
+	{
+		perror(OPEN_CHILD_ERROR);
+		close(fd);
+		exit(1);
+	}
+	dup2;
+	dup2;
+	execute;
 }
 
 /**
@@ -37,7 +45,10 @@ void	child(int *fd, char **av, char **envp)
  */
 void	parent(int *fd, char **av, char **envp)
 {
+	int	fd_parent;
+
 	close(fd[1]);
+	fd_parent = open(av[4], O_WRONLY, O_TRUNC, O_CREAT, 0644);
 	read(fd[0]);
 	close(fd[0]);
 }
@@ -59,7 +70,8 @@ int	main(int argc, char **argv, char **envp)
 			perror(FORK_ERROR);
 			close(fd[0]);
 		}
-		child(fd, argv, envp);
+		if (!pid)
+			child(fd, argv, envp);
 		parent(fd, argv, envp);
 	}
 	else

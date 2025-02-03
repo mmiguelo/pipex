@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:34:18 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/03 14:53:34 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:31:13 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 
 # include "../my_libft/libft.h"
 # include <stdio.h>
-# include <unistd.h>
-# include <fcntl.h>
 # include <string.h>
-# include <stdlib.h>
-# include <sys/wait.h>
 # include <errno.h>
+# include <sys/wait.h>
+# include <sys/types.h>
+# include <fcntl.h>
 
 /*=============================================================================#
 #                               DEFINES                                        #
