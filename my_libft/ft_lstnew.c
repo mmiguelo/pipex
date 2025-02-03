@@ -6,12 +6,18 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 16:57:06 by mmiguelo          #+#    #+#             */
-/*   Updated: 2024/10/28 14:17:16 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:41:28 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief Allocates and returns a new node.
+ * 
+ * @param content The content to create the node with.
+ * @return The new node
+ */
 t_list	*ft_lstnew(void *content)
 {
 	t_list	*one;

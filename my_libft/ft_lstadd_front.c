@@ -6,12 +6,18 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 17:33:36 by mmiguelo          #+#    #+#             */
-/*   Updated: 2024/10/25 17:33:50 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:48:48 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief Adds the node ’new’ at the beginning of the list.
+ * 
+ * @param lst The address of a pointer to the first link of a list.
+ * @param new The address of a pointer to the node to be added to the list.
+ */
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	if (!lst || !new)

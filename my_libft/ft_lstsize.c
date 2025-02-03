@@ -6,12 +6,18 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 14:13:34 by mmiguelo          #+#    #+#             */
-/*   Updated: 2024/10/28 14:41:13 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:40:30 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief Counts the number of nodes in a list.
+ * 
+ * @param lst The beginning of the list.
+ * @return The length of the list
+ */
 int	ft_lstsize(t_list *lst)
 {
 	int		i;

@@ -6,12 +6,18 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 14:47:18 by mmiguelo          #+#    #+#             */
-/*   Updated: 2024/10/25 15:46:06 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:45:24 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief Returns the last node of the list.
+ * 
+ * @param lst The beginning of the list.
+ * @return Last node of the list.
+ */
 t_list	*ft_lstlast(t_list *lst)
 {
 	t_list	*last;

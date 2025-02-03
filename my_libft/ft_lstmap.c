@@ -6,12 +6,24 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:47:33 by mmiguelo          #+#    #+#             */
-/*   Updated: 2024/10/30 17:56:05 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:44:03 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief Iterates the list and applies the function ’f’ on the content of each 
+node. Creates a new list resulting of the successive applications of the
+function ’f’. The ’del’ function is used to delete the content of a node
+if needed
+ * 
+ * @param lst The address of a pointer to a node.
+ * @param f The address of the function used to iterate on the list.
+ * @param del The address of the function used to delete the content of
+ * a node if needed.
+ * @return The new list. Or NULL if the allocation fails.
+ */
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*new_list;

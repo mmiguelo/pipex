@@ -6,12 +6,20 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 11:47:05 by mmiguelo          #+#    #+#             */
-/*   Updated: 2024/10/29 12:02:55 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:51:50 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief Coppies 'len' numbers to a string. Converting a an int to a char.
+ * 
+ * @param s The empty string
+ * @param number The number to be coppied
+ * @param len The length of the string
+ * @return The string
+ */
 static char	*ft_convert_to_char(char *s, unsigned int number, long int len)
 {
 	while (number > 0)

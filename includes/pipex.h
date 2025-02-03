@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:34:18 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/03 14:13:49 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:53:34 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@
 #=============================================================================*/
 
 # define PIPE_ERROR "An error ocurred with opening the pipe\n"
-# define FORK_ERROR "An error ocurred with making a fork"
+# define FORK_ERROR "An error ocurred with forking"
+# define OPEN_CHILD_ERROR "An error occured with opening av[1]"
+# define OPEN_PARENT_ERROR "An error occured with opening av[2]"
 
 /*=============================================================================#
 #                               GENERAL                                        #
 #=============================================================================*/
 
-void child(int *fd, char **av, char **envp);
-void parent(int *fd, char **av, char **envp);
+void	child(int *fd, char **av, char **envp);
+void	parent(int *fd, char **av, char **envp);
 
 #endif
