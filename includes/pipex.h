@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:34:18 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/03 10:51:36 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/03 11:03:47 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 # define PIPEX_H
 
 # include "../my_libft/libft.h"
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <string.h>
-#include <stdlib.h>
-#include <sys/wait.h>
-#include <errno.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <string.h>
+# include <stdlib.h>
+# include <sys/wait.h>
+# include <errno.h>
 
 /*=============================================================================#
 #                               DEFINES                                        #
@@ -32,6 +32,5 @@
 /*=============================================================================#
 #                               GENERAL                                        #
 #=============================================================================*/
-
 
 #endif
