@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:49:48 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/01/27 09:14:52 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/03 10:54:12 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,16 @@ int main(int argc, char **argv)
 			perror(PIPE_ERROR);
 		id = fork();
 		if (id == -1)
+		{
 			perror(FORK_ERROR);
+			close(fd[0]);
+			close(fd[1]);
+		}
+	}
+	else
+	{
+		ft_putstr_fd("Wrong input. Try .pipex file1 cmd1 cmd2 file2\n", 2);
+		exit(42);
 	}
 	return (0);
 }
