@@ -16,11 +16,13 @@
 #                                    NAMES                                     #
 #==============================================================================#
 
-NAME = libft.a
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
 RM = rm -f
 
+NAME = libft.a
+
+OBJ_DIR = obj
 
 #==============================================================================#
 #                                    FILES                                     #
@@ -81,9 +83,7 @@ SRCS +=	ft_lstclear.c
 SRCS +=	ft_lstiter.c
 SRCS +=	ft_lstmap.c
 
-
-OBJ = $(SRCS:.c=.o)
-
+OBJ = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 #==============================================================================#
 #                                    RULES                                     #
@@ -91,15 +91,22 @@ OBJ = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ_DIR) $(OBJ)
 		@ar rcs $(NAME) $(OBJ)
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 		@$(RM) $(OBJ)
 
 fclean: clean
+		@rm -rf $(OBJ_DIR)
 		@$(RM) $(NAME)
 
 re: clean all
 
-PHONY: all clean fclean re
+.PHONY: all clean fclean re

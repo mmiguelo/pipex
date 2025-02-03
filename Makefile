@@ -6,9 +6,11 @@
 #    By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 10:33:32 by mmiguelo          #+#    #+#              #
-#    Updated: 2025/01/24 10:51:25 by mmiguelo         ###   ########.fr        #
+#    Updated: 2025/02/03 11:06:51 by mmiguelo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+.SILENT:
 
 #==============================================================================#
 #                                    NAMES                                     #
@@ -71,5 +73,7 @@ fclean: clean
 	$(RM) $(NAME) $(OBJ_DIR)
 
 re: fclean all
+
+PHONY: all clean fclean re
 
 .SILENT:
