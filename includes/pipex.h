@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:34:18 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/04 13:45:20 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:47:37 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@
 
 void	child(int *fd, char **av, char **envp);
 void	parent(int *fd, char **av, char **envp);
-void	process(char *command, char **envp);
+void	process(char *argv, char **envp);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:49:48 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/04 13:46:03 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:47:29 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * @param command 
  * @param envp 
  */
-void	execute(char *command, char **envp)
+void	execute(char *argv, char **envp)
 {
 	
 }
