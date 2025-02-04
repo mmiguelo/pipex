@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:49:48 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/03 15:47:22 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:46:03 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,12 @@
 /**
  * @brief 
  * 
- * @param fd 
- * @param av 
+ * @param command 
  * @param envp 
  */
-void	child(int *fd, char **av, char **envp)
+void	execute(char *command, char **envp)
 {
-	int	fd_child;
-
-	close(fd[0]);
-	fd_child = open(av[1], O_RDONLY, 444);
-	if (fd_child == -1)
-	{
-		perror(OPEN_CHILD_ERROR);
-		close(fd);
-		exit(1);
-	}
-	dup2;
-	dup2;
-	execute;
+	
 }
 
 /**
@@ -43,14 +30,48 @@ void	child(int *fd, char **av, char **envp)
  * @param av 
  * @param envp 
  */
-void	parent(int *fd, char **av, char **envp)
+void	child(int *fd, char **argv, char **envp)
 {
-	int	fd_parent;
+	int	fd_in;
+
+	close(fd[0]);
+	fd_in = open(av[1], O_RDONLY, 444);
+	if (fd_in == -1)
+	{
+		perror(OPEN_CHfd_parent
+fd_parent
+fd_parent
+fd_parentILD_ERROR);
+		close(fd[1]);
+		exit(1);
+	}
+	dup2(fd_in, STDIN_FILENO);
+	dup2(fd[1], STDOUT_FILENO);
+	process(argv[2], envp);
+}
+
+/**
+ * @brief 
+ * 
+ * @param fd 
+ * @param av 
+ * @param envp 
+ */
+void	parent(int *fd, char **argv, char **envp)
+{
+	int	fd_out;
 
 	close(fd[1]);
-	fd_parent = open(av[4], O_WRONLY, O_TRUNC, O_CREAT, 0644);
-	read(fd[0]);
-	close(fd[0]);
+	fd_out = open(argv[4], O_WRONLY, O_TRUNC, O_CREAT, 0644);
+	if (fd_out == -1)
+	{
+		perror(OPEN_PARENT_ERROR);
+		close(fd[0]);
+		exit(2);
+	}
+	dup2(fd[0], STDIN_FILENO);
+	dup2(fd_out, STDOUT_FILENO);
+	process(argv[3], envp);
 }
 
 int	main(int argc, char **argv, char **envp)

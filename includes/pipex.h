@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:34:18 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/03 15:31:13 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:45:20 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <errno.h>
 # include <sys/wait.h>
 # include <sys/types.h>
+# include <unistd.h>
 # include <fcntl.h>
 
 /*=============================================================================#
@@ -27,8 +28,9 @@
 
 # define PIPE_ERROR "An error ocurred with opening the pipe\n"
 # define FORK_ERROR "An error ocurred with forking"
-# define OPEN_CHILD_ERROR "An error occured with opening av[1]"
+# define OPEN_CHILD_ERROR "Error opening input file"
 # define OPEN_PARENT_ERROR "An error occured with opening av[2]"
+# define COMMAND_NOT_FOUND "Command not found"
 
 /*=============================================================================#
 #                               GENERAL                                        #
@@ -36,5 +38,6 @@
 
 void	child(int *fd, char **av, char **envp);
 void	parent(int *fd, char **av, char **envp);
+void	process(char *command, char **envp);
 
 #endif
