@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:34:18 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/05 10:58:43 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:18:16 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define OPEN_CHILD_ERROR "An error ocurred with opening the input file"
 # define OPEN_PARENT_ERROR "An error occured with opening av[2]"
 # define COMMAND_NOT_FOUND "Command not found"
+# define EXECVE_ERROR "An error ocurred with execve"
 
 /*=============================================================================#
 #                               GENERAL                                        #
