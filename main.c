@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:49:48 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/05 10:50:48 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/05 13:42:42 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ void	child(int *fd, char **argv, char **envp)
 		close(fd[1]);
 		exit(1);
 	}
-	dup2(fd_in, STDIN_FILENO);
 	dup2(fd[1], STDOUT_FILENO);
+	dup2(fd_in, STDIN_FILENO);
+	close(fd[1]);
 	process(argv[2], envp);
 }
 
@@ -87,6 +88,7 @@ void	parent(int *fd, char **argv, char **envp)
 	}
 	dup2(fd[0], STDIN_FILENO);
 	dup2(fd_out, STDOUT_FILENO);
+	close(fd[0]);
 	process(argv[3], envp);
 }
 
