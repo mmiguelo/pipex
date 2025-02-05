@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:49:48 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/04 13:47:29 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:50:48 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,28 @@
  * 
  * @param command 
  * @param envp 
+ * @return void* 
  */
-void	execute(char *argv, char **envp)
+void	*search_path(char *command, char **envp)
 {
+	
+}
+
+/**
+ * @brief 
+ * 
+ * @param command 
+ * @param envp 
+ */
+void	process(char *argv, char **envp)
+{
+	char	**command;
+	int		i;
+	char	*path;
+
+	i = -1;
+	command = ft_split(argv, ' ');
+	path = search_path(command[0], envp);
 	
 }
 
@@ -35,13 +54,10 @@ void	child(int *fd, char **argv, char **envp)
 	int	fd_in;
 
 	close(fd[0]);
-	fd_in = open(av[1], O_RDONLY, 444);
+	fd_in = open(argv[1], O_RDONLY, 0444);
 	if (fd_in == -1)
 	{
-		perror(OPEN_CHfd_parent
-fd_parent
-fd_parent
-fd_parentILD_ERROR);
+		perror(OPEN_CHILD_ERROR);
 		close(fd[1]);
 		exit(1);
 	}
@@ -77,8 +93,6 @@ void	parent(int *fd, char **argv, char **envp)
 int	main(int argc, char **argv, char **envp)
 {
 	int		fd[2];
-	// fd[0] - read
-	// fd[1] - write
 	pid_t	pid;
 
 	if (argc == 5)
@@ -91,7 +105,7 @@ int	main(int argc, char **argv, char **envp)
 			perror(FORK_ERROR);
 			close(fd[0]);
 		}
-		if (!pid)
+		if (pid == 0)
 			child(fd, argv, envp);
 		parent(fd, argv, envp);
 	}
