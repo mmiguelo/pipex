@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:49:48 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/05 15:18:05 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:24:01 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,16 @@ void	process(char *argv, char **envp)
 	if (!path)
 	{
 		while (command[++i])
-		{
 			free(command[i]);
-		}
 		free(command);
 		perror(COMMAND_NOT_FOUND);
 		exit(3);
 	}
 	if (execve(path, command, envp) == -1)
 	{
+		while (command[++i])
+			free(command[i]);
+		free(command);
 		perror("EXECVE_ERROR");
 		exit(4);
 	}
