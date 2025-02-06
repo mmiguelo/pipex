@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:49:48 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/05 15:24:01 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:46:29 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,26 @@
  * @param envp 
  * @return void* 
  */
-void	*search_path(char *command, char **envp)
+char	*search_path(char *command, char **envp)
 {
-	
+	char **full_path;
+	char *partial_path;
+
+	while (*envp && ft_strnstr(*envp, "PATH=", 5) == 0)
+		envp++;
+	full_path = ft_split(*envp + 5, ':' );
+	if (!full_path)
+		return (NULL);
+	while (*full_path)
+	{
+		partial_path = ft_strjoin(*full_path, "/");
+		partial_path = ft_strjoin(partial_path, command);
+		if (access(partial_path, F_OK | X_OK) == 0)
+			return (ft_free(full_path), partial_path);
+		free(partial_path);
+		full_path++;
+	}
+	return (ft_free(full_path), NULL);
 }
 
 /**
@@ -74,7 +91,7 @@ void	child(int *fd, char **argv, char **envp)
 	{
 		perror(OPEN_CHILD_ERROR);
 		close(fd[1]);
-		exit(1);
+		exit(3);
 	}
 	dup2(fd[1], STDOUT_FILENO);
 	dup2(fd_in, STDIN_FILENO);
@@ -99,7 +116,7 @@ void	parent(int *fd, char **argv, char **envp)
 	{
 		perror(OPEN_PARENT_ERROR);
 		close(fd[0]);
-		exit(2);
+		exit(4);
 	}
 	dup2(fd[0], STDIN_FILENO);
 	dup2(fd_out, STDOUT_FILENO);
@@ -112,6 +129,7 @@ int	main(int argc, char **argv, char **envp)
 	int		fd[2];
 	pid_t	pid;
 
+	parse(envp);
 	if (argc == 5)
 	{
 		if (pipe(fd) == -1)

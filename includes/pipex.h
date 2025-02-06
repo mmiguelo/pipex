@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:34:18 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/05 15:18:16 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:36:42 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define OPEN_PARENT_ERROR "An error occured with opening av[2]"
 # define COMMAND_NOT_FOUND "Command not found"
 # define EXECVE_ERROR "An error ocurred with execve"
+# define ENVP_ERROR "No environment variables found"
+# define PATH_ERROR "No PATH variable found in the envp"
 
 /*=============================================================================#
 #                               GENERAL                                        #
