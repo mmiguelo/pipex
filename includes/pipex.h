@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:34:18 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/06 15:39:19 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:14:44 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*search_path(char *command, char **envp);
 #                               UTILS                                          #
 #=============================================================================*/
 
-int		parse(char **envp);
+int		parse(char **envp, char **argv);
 void	ft_free(char **str);
 
 #endif

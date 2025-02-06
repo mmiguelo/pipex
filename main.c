@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:49:48 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/06 16:08:32 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:39:03 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*search_path(char *command, char **envp)
 		partial_path = ft_strjoin(temp, command);
 		free(temp);
 		if (access(partial_path, F_OK | X_OK) == 0)
-			return (partial_path);
+			return (ft_free(full_path), partial_path);
 		free(partial_path);
 		i++;
 	}
@@ -59,6 +59,12 @@ void	process(char *argv, char **envp)
 	char	*path;
 
 	command = ft_split(argv, ' ');
+	if (!command || !command[0])
+	{
+		free(command);
+		perror("Error splitting command");
+		exit(2);
+	}
 	path = search_path(command[0], envp);
 	if (!path)
 	{
@@ -68,7 +74,9 @@ void	process(char *argv, char **envp)
 	}
 	if (execve(path, command, envp) == -1)
 	{
-		perror("EXECVE_ERROR");
+		perror(EXECVE_ERROR);
+		ft_free(command);
+		free(path);
 		exit(4);
 	}
 }
@@ -126,7 +134,7 @@ int	main(int argc, char **argv, char **envp)
 	int		fd[2];
 	pid_t	pid;
 
-	parse(envp);
+	parse(envp, argv);
 	if (argc == 5)
 	{
 		if (pipe(fd) == -1)
@@ -143,7 +151,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	else
 	{
-		ft_putstr_fd("Wrong input. Try .pipex file1 cmd1 cmd2 file2\n", 2);
+		ft_putstr_fd("Wrong input. Try ./pipex file1 cmd1 cmd2 file2\n", 2);
 		return (0);
 	}
 	return (0);
