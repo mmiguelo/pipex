@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 11:22:46 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/06 15:50:51 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:08:53 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_free(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -27,7 +27,7 @@ void	ft_free(char **str)
 
 int	parse(char **envp)
 {
-	int i;
+	int	i;
 
 	if (!envp || !*envp)
 	{
