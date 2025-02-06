@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 11:22:46 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/06 11:38:28 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:50:51 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,33 @@
 
 void	ft_free(char **str)
 {
-	while (*str)
-		free(*str++);
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
 	free(str);
 }
 
-void	parse(char **envp)
+int	parse(char **envp)
 {
+	int i;
+
 	if (!envp || !*envp)
 	{
 		ft_putstr_fd(ENVP_ERROR, 2);
 		exit(1);
 	}
-	while (*envp && ft_strnstr(*envp, "PATH=", 5) == 0)
-		envp++;
-	if (!*envp)
+	i = 0;
+	while (envp[i] && ft_strnstr(envp[i], "PATH=", 5) == 0)
+		i++;
+	if (!envp[i])
 	{
 		ft_putstr_fd(PATH_ERROR, 2);
 		exit(2);
 	}
+	return (i);
 }

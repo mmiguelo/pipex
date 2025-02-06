@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 19:03:29 by mmiguelo          #+#    #+#             */
-/*   Updated: 2024/12/03 13:41:59 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/06 12:50:33 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h> // write
 # include <stdio.h> // test printf
 # include <stdlib.h> //free malloc
-# include "../libft.h"
+# include "../../includes/libft.h"
 
 int	ft_printf(const char *str, ...);
 int	ft_putchar(char c);
