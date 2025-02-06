@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:34:18 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/06 11:36:42 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/06 11:52:54 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdio.h>
 # include <string.h>
 # include <errno.h>
-# include <sys/wait.h>
 # include <sys/types.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -43,5 +42,12 @@ void	child(int *fd, char **av, char **envp);
 void	parent(int *fd, char **av, char **envp);
 void	process(char *argv, char **envp);
 char	*search_path(char *command, char **envp);
+
+/*=============================================================================#
+#                               UTILS                                          #
+#=============================================================================*/
+
+void	parse(char **envp);
+void	ft_free(char **str);
 
 #endif
