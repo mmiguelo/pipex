@@ -94,11 +94,11 @@ all: $(NAME)
 $(NAME): $(OBJ_DIR) $(OBJ)
 		@ar rcs $(NAME) $(OBJ)
 
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-
-$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)/$(dir $*)
 	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/%:
+	mkdir -p $@
 
 clean:
 		@$(RM) $(OBJ)
