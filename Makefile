@@ -6,7 +6,7 @@
 #    By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 10:33:32 by mmiguelo          #+#    #+#              #
-#    Updated: 2025/02/11 14:33:42 by mmiguelo         ###   ########.fr        #
+#    Updated: 2025/02/11 15:03:22 by mmiguelo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ BONUS_PATH 	= bonus
 #                                    FILES                                     #
 #==============================================================================#
 
-SRC 		=	$(addprefix $(SRC_PATH)/, $(addsuffix .c, $(MANDATORY)))
+SRC 		=	$(addsuffix .c, $(MANDATORY))
 SRC_BONUS 	=	$(addprefix $(BONUS_PATH)/, $(addsuffix .c, $(BONUS)))
 
 OBJ_DIR = obj
@@ -61,11 +61,11 @@ $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 # Rule to compile mandotory files
-$(OBJ_DIR)/%.o: $(SRC_PATH)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_PATH)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
 # Rule to compile bonus files
-$(OBJ_DIR)/%.o: $(BONUS_PATH)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(BONUS_PATH)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
 # Rule to compile the executable
