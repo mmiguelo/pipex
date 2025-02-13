@@ -83,3 +83,31 @@ void	process(char *av, char **envp, int *fd)
 		exit(4);
 	}
 }
+
+char	*search_path(char *command, char **envp)
+{
+	char	**full_path;
+	char	*partial_path;
+	char	*temp;
+	int		i;
+
+	i = 0;
+	while (ft_strnstr(envp[i], "PATH=", 5) == 0)
+		i++;
+	full_path = ft_split(envp[i] + 5, ':' );
+	if (!full_path)
+		return (NULL);
+	i = 0;
+	while (full_path[i])
+	{
+		temp = ft_strjoin(full_path[i], "/");
+		partial_path = ft_strjoin(temp, command);
+		free(temp);
+		if (access(partial_path, F_OK | X_OK) == 0)
+			return (ft_free(full_path), partial_path);
+		free(partial_path);
+		i++;
+	}
+	ft_free(full_path);
+	return (NULL);
+}
