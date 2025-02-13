@@ -40,3 +40,20 @@ void	parse_bonus(char **envp, char **argv)
 	}
 	return ;
 }
+
+void	ft_init_pipes(t_pipex *pipes, int argc, char **argv, char **envp)
+{
+	pipes->argc = argc;
+	pipes->argv = argv;
+	pipes->envp = envp;
+	if (ft_strcmp("here_doc", argv[1]) == 0)
+	{
+		pipes->here_doc = true;
+		pipes->cmd = 3;
+	}
+	else
+	{
+		pipes->here_doc = false;
+		pipes->cmd = 2;
+	}
+}
