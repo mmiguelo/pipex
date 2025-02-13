@@ -74,9 +74,9 @@ void	parse_bonus(char **envp, char **av);
 void	ft_init_pipes(t_pipex *pipes, int ac, char **av, char **envp);
 int		open_file(char *file, int n);
 void	main_process(char **av, char **envp);
-void	create_here_doc(t_pipex *pipes);
-pid_t	create_fork(t_pipex *pipes);
-void	create_process(t_pipex *pipes);
 void	start_here_doc(t_pipex *pipes);
+/* void	create_here_doc(t_pipex *pipes);
+pid_t	create_fork(t_pipex *pipes);
+void	create_process(t_pipex *pipes); */
 
 #endif
