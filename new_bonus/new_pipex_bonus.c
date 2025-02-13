@@ -12,6 +12,8 @@
 
 #include "pipex_bonus.h"
 
+
+
 int main(int ac, char **av, char **envp)
 {
 	t_pipex	pipes;
@@ -28,7 +30,7 @@ int main(int ac, char **av, char **envp)
 		fd_in = open_file(av[1], 2);
 		fd_out = open_file(av[ac -1], 1);
 		dup2(fd_in, STDIN_FILENO);
-		while (i < ac - 2)
+		while (pipes.cmd < ac - 2)
 			main_process(&av[pipes.cmd++], envp);
 		dup2(fd_out, STDOUT_FILENO);
 		process(av[ac - 2], envp, NULL);

@@ -58,6 +58,22 @@ void	ft_init_pipes(t_pipex *pipes, int argc, char **argv, char **envp)
 	}
 }
 
+void	open_file(char *file, int n)
+{
+	int	res;
+
+	if (n == 1)
+		res = open(file, O_WRONLY | O_CREAT | =_O_TRUNC, 0777);
+	if (n == 2)
+		res = open(file, O_WRONLY | O_CREAT | =_O_APPEND, 0777);
+	if (res == -1)
+	{
+		perror(file);
+		exit(4);
+	}
+	return (res);
+}
+
 void	process(char *av, char **envp, int *fd)
 {
 	char	**command;
