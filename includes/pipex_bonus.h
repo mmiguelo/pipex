@@ -75,5 +75,6 @@ void	create_here_doc(t_pipex *pipes);
 pid_t	create_fork(t_pipex *pipes);
 void	parse_bonus(char **envp, char **argv);
 void	create_process(t_pipex *pipes);
+void	start_here_doc(t_pipex *pipes);
 
 #endif
