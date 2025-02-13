@@ -21,4 +21,10 @@ int main(int ac, char **av, char **envp)
     if (argc < 5)
         return (ft_putstr_fd(INPUT2_ERROR, 2), 2)
     parse_bonus(envp, argv);
+    if (!pipes.here_doc)
+    {
+        
+    }
+    else
+        start_here_doc(&pipes);
 }
