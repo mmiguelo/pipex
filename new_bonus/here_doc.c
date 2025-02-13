@@ -14,5 +14,5 @@
 
 void	start_here_doc(t_pipex *pipes)
 {
-
+	
 }
