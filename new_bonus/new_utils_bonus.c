@@ -57,3 +57,31 @@ void	ft_init_pipes(t_pipex *pipes, int argc, char **argv, char **envp)
 		pipes->cmd = 2;
 	}
 }
+
+void	process(char *argv, char **envp)
+{
+	char	**command;
+	char	*path;
+
+	command = ft_split(argv, ' ');
+	if (!command || !command[0])
+	{
+		free(command);
+		perror("Error splitting command");
+		exit(2);
+	}
+	path = search_path(command[0], envp);
+	if (!path)
+	{
+		ft_free(command);
+		perror(COMMAND_NOT_FOUND);
+		exit(3);
+	}
+	if (execve(path, command, envp) == -1)
+	{
+		perror(EXECVE_ERROR);
+		ft_free(command);
+		free(path);
+		exit(4);
+	}
+}
