@@ -12,7 +12,30 @@
 
 #include "pipex_bonus.h"
 
+void	main_process(char **av, char **envp)
+{
+	int		fd[2];
+	pid_t	pid;
 
+	if (pipe(fd) == -1)
+		perror(PIPE_ERROR);
+	pid = fork();
+	if (pid == -1)
+	{
+		perror(FORK_ERROR);
+		close(fd[0]);
+		close(fd[1]);
+	}
+	if (pid == 0)
+	{
+		close(fd[0]);
+		dup2(fd[1], STDOUT_FILENO);
+		process(*av, envp, fd);
+	}
+	close(fd[1]);
+	dup2(fd[0], STDIN_FILENO);
+	waitpid(pid, NULL, 0);
+}
 
 int main(int ac, char **av, char **envp)
 {
