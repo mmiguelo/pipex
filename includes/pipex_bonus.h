@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 10:58:54 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/13 12:28:28 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/13 12:35:39 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void	ft_init_pipes(t_pipex *pipes, int argc, char **argv, char **envp);
 void	create_here_doc(t_pipex *pipes);
 pid_t	create_fork(t_pipex *pipes);
 void	parse_bonus(char **envp, char **argv);
+void	create_process(t_pipex *pipes);
 
 #endif

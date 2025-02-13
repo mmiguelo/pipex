@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 10:51:53 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/13 12:28:57 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:14:11 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,34 @@ pid_t	create_fork(t_pipex *pipes)
 		close(pipes->fd[0]);
 	}
 	return (pid);
+}
+
+void	child(int *fd, char **argv, char **envp)
+{
+	int	fd_in;
+
+	close(fd[0]);
+	fd_in = open(argv[1], O_RDONLY, 0444);
+	if (fd_in == -1)
+	{
+		perror(OPEN_CHILD_ERROR);
+		close(fd[1]);
+		exit(3);
+	}
+	dup2(fd[1], STDOUT_FILENO);
+	dup2(fd_in, STDIN_FILENO);
+	process(argv[2], envp);
+}
+
+void	ft_free(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }
