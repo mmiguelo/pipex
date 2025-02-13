@@ -64,12 +64,7 @@ void	process(char *argv, char **envp)
 	char	*path;
 
 	command = ft_split(argv, ' ');
-	if (!command || !command[0])
-	{
-		free(command);
-		perror("Error splitting command");
-		exit(2);
-	}
+
 	path = search_path(command[0], envp);
 	if (!path)
 	{
