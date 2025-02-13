@@ -70,10 +70,10 @@ void	ft_free(char **str);
 #                               BONUS                                          #
 #=============================================================================*/
 
-void	ft_init_pipes(t_pipex *pipes, int argc, char **argv, char **envp);
+void	ft_init_pipes(t_pipex *pipes, int ac, char **av, char **envp);
 void	create_here_doc(t_pipex *pipes);
 pid_t	create_fork(t_pipex *pipes);
-void	parse_bonus(char **envp, char **argv);
+void	parse_bonus(char **envp, char **av);
 void	create_process(t_pipex *pipes);
 void	start_here_doc(t_pipex *pipes);
 
