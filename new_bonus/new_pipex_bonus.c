@@ -18,7 +18,7 @@ int main(int ac, char **av, char **envp)
 
     if (av[1] && (ft_strncmp(av[1], "here_doc", 8) == 0 && ac < 6))
         return (ft_putstr_fd(INPUT_ERROR, 2), 1)
-    if (argc < 5)
+    if (ac < 5)
         return (ft_putstr_fd(INPUT2_ERROR, 2), 2)
     parse_bonus(envp, av);
     if (!pipes.here_doc)
