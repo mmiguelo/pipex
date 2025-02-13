@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 10:49:48 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/11 15:25:46 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/13 11:59:41 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ char	*search_path(char *command, char **envp)
 	ft_free(full_path);
 	return (NULL);
 }
+
 /**
  * @brief 
  * 
@@ -150,7 +151,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	else
 	{
-		ft_putstr_fd("Wrong input. Try ./pipex file1 cmd1 cmd2 file2\n", 2);
+		ft_putstr_fd(INPUT2_ERROR, 2);
 		return (0);
 	}
 	return (0);

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/24 10:34:18 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/13 10:59:15 by mmiguelo         ###   ########.fr       */
+/*   Created: 2025/02/13 10:58:54 by mmiguelo          #+#    #+#             */
+/*   Updated: 2025/02/13 12:28:28 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include "../my_libft/includes/libft.h"
 # include <stdio.h>
@@ -21,16 +21,18 @@
 # include <sys/wait.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <stdbool.h>
 
 typedef struct s_pipex
 {
 	int		argc;
 	char	**argv;
 	int		cmd;
-	char	envp;
+	char	**envp;
 	pid_t	pid;
 	int		fd[2];
 	int		last_fd;
+	bool	here_doc;
 }			t_pipex;
 
 /*=============================================================================#
@@ -45,8 +47,8 @@ typedef struct s_pipex
 # define EXECVE_ERROR "An error ocurred with execve"
 # define ENVP_ERROR "No environment variables found"
 # define PATH_ERROR "No PATH variable found in the envp"
-# define INPUT_ERROR "Wrong input. try ./pipex here_doc LIMITER cmd cmd1 file\n"
-# define INPUT2_ERROR "Wrong input. Try ./pipex file1 cmd1 cmd2 file2\n"
+# define INPUT_ERROR "Wrong input. try ./pipex here_doc LIMITER cmd cmd1 file"
+# define INPUT2_ERROR "Wrong input. Try ./pipex file1 cmd1 cmd2 file2"
 
 /*=============================================================================#
 #                               GENERAL                                        #
@@ -63,5 +65,14 @@ char	*search_path(char *command, char **envp);
 
 int		parse(char **envp, char **argv);
 void	ft_free(char **str);
+
+/*=============================================================================#
+#                               BONUS                                          #
+#=============================================================================*/
+
+void	ft_init_pipes(t_pipex *pipes, int argc, char **argv, char **envp);
+void	create_here_doc(t_pipex *pipes);
+pid_t	create_fork(t_pipex *pipes);
+void	parse_bonus(char **envp, char **argv);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 10:33:32 by mmiguelo          #+#    #+#              #
-#    Updated: 2025/02/11 15:03:22 by mmiguelo         ###   ########.fr        #
+#    Updated: 2025/02/13 12:04:46 by mmiguelo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ BONUS_PATH 	= bonus
 #==============================================================================#
 
 SRC 		=	$(addsuffix .c, $(MANDATORY))
-SRC_BONUS 	=	$(addprefix $(BONUS_PATH)/, $(addsuffix .c, $(BONUS)))
+SRC_BONUS 	=	$(addsuffix .c, $(BONUS))
 
 OBJ_DIR = obj
 OBJS = $(SRC:%.c=$(OBJ_DIR)/%.o)
@@ -73,7 +73,7 @@ $(NAME): $(OBJ_DIR) $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 # Rule to compile the bonus executable
-bonus: fclean $(OBJ_DIR) $(OBJS_BONUS) $(LIBFT)
+bonus: $(OBJ_DIR) $(OBJS_BONUS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) -o $(NAME)
 
 # Rule to clean the object files
