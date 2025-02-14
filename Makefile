@@ -6,7 +6,7 @@
 #    By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/24 10:33:32 by mmiguelo          #+#    #+#              #
-#    Updated: 2025/02/13 12:04:46 by mmiguelo         ###   ########.fr        #
+#    Updated: 2025/02/14 10:58:18 by mmiguelo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LIBFT = ./my_libft/libft.a
 RM = rm -rf
 
 MANDATORY = pipex utils
-BONUS =	pipex_bonus utils_bonus
+BONUS =	new_pipex_bonus new_utils_bonus here_doc
 
 NAME = pipex
 
