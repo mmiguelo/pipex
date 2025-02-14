@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 10:58:54 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/14 10:59:03 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:52:11 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_pipex
 #                               GENERAL                                        #
 #=============================================================================*/
 
-void	child(int *fd, char **av, char **envp);
+void	child_bonus(t_pipex *pipes);
 void	parent(int *fd, char **av, char **envp);
 void	process(char *argv, char **envp, int *fd);
 char	*search_path(char *command, char **envp);
@@ -75,8 +75,8 @@ void	ft_init_pipes(t_pipex *pipes, int ac, char **av, char **envp);
 int		open_file(char *file, int n);
 void	main_process(char **av, char **envp);
 void	start_here_doc(t_pipex *pipes);
-/* void	create_here_doc(t_pipex *pipes);
+void	create_here_doc(t_pipex *pipes);
 pid_t	create_fork(t_pipex *pipes);
-void	create_process(t_pipex *pipes); */
+void	create_process(t_pipex *pipes);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_utisl_bonus.c                                  :+:      :+:    :+:   */
+/*   new_utils_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmiguelo <mmiguelo@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 21:20:42 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/13 21:20:42 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:20:11 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,14 @@ void	ft_init_pipes(t_pipex *pipes, int argc, char **argv, char **envp)
 	}
 }
 
-void	open_file(char *file, int n)
+int	open_file(char *file, int n)
 {
 	int	res;
 
 	if (n == 1)
-		res = open(file, O_WRONLY | O_CREAT | =_O_TRUNC, 0777);
+		res = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (n == 2)
-		res = open(file, O_WRONLY | O_CREAT | =_O_APPEND, 0777);
+		res = open(file, O_WRONLY | O_CREAT | O_APPEND, 0777);
 	if (res == -1)
 	{
 		perror(file);
@@ -126,4 +126,17 @@ char	*search_path(char *command, char **envp)
 	}
 	ft_free(full_path);
 	return (NULL);
+}
+
+void	ft_free(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }
