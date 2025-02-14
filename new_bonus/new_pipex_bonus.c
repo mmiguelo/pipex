@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_pipex_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmiguelo <mmiguelo@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 21:09:03 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/13 21:09:03 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/14 11:02:58 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ int main(int ac, char **av, char **envp)
 	int		fd_out;
 
 	if (av[1] && (ft_strncmp(av[1], "here_doc", 8) == 0 && ac < 6))
-		return (ft_putstr_fd(INPUT_ERROR, 2), 1)
+		return (ft_putstr_fd(INPUT_ERROR, 2), 1);
 	if (ac < 5)
-		return (ft_putstr_fd(INPUT2_ERROR, 2), 2)
+		return (ft_putstr_fd(INPUT2_ERROR, 2), 2);
 	parse_bonus(envp, av);
-	ft_init_pipes(&pipes);
+	ft_init_pipes(&pipes, ac, av, envp);
 	if (!pipes.here_doc)
 	{
 		fd_in = open_file(av[1], 2);
