@@ -6,7 +6,7 @@
 /*   By: mmiguelo <mmiguelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 10:58:54 by mmiguelo          #+#    #+#             */
-/*   Updated: 2025/02/13 12:35:39 by mmiguelo         ###   ########.fr       */
+/*   Updated: 2025/02/14 10:59:03 by mmiguelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_pipex
 
 void	child(int *fd, char **av, char **envp);
 void	parent(int *fd, char **av, char **envp);
-void	process(char *argv, char **envp);
+void	process(char *argv, char **envp, int *fd);
 char	*search_path(char *command, char **envp);
 
 /*=============================================================================#
