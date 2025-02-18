@@ -54,6 +54,9 @@ void	create_here_doc(t_pipex *pipes)
 			break ;
 		if ((ft_strncmp(line, limiter, ft_strlen(limiter)) == 0) && line[ft_strlen(limiter)] == '\n')
 		{
+			close(STDIN_FILENO);
+			free(line);
+			line = get_next_line(STDIN_FILENO);
 			free(line);
 			line = NULL;
 			break ;
