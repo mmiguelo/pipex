@@ -57,7 +57,6 @@ void	create_here_doc(t_pipex *pipes)
 			close(STDIN_FILENO);
 			free(line);
 			line = get_next_line(STDIN_FILENO);
-			free(line);
 			line = NULL;
 			break ;
 		}
