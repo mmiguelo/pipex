@@ -47,8 +47,7 @@ void	create_here_doc(t_pipex *pipes)
 	close(pipes->fd[0]);
 	while (1)
 	{
-		if (pipes->cmd == 3 && pipes->here_doc == true)
-			ft_printf("pipex_bonus here_doc> ");
+		ft_printf("pipex_bonus here_doc> ");
 		line = get_next_line(STDIN_FILENO);
 		if (!line)
 			break ;
@@ -78,6 +77,7 @@ void	create_process(t_pipex *pipes)
 		{
 			close(pipes->fd[0]);
 			child_bonus(pipes);
+			process(pipes->argv[pipes->cmd], pipes->envp, pipes->fd);
 		}
 		close(pipes->fd[1]);
 		dup2(pipes->fd[0], STDIN_FILENO);
