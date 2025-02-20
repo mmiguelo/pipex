@@ -27,10 +27,10 @@ typedef struct s_pipex
 {
 	int		argc;
 	char	**argv;
-	int		cmd;
 	char	**envp;
-	pid_t	pid;
+	int		cmd;
 	int		fd[2];
+	pid_t	pid;
 	int		last_fd;
 	bool	here_doc;
 }			t_pipex;

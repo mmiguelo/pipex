@@ -33,9 +33,10 @@ void	child_bonus(t_pipex *pipes)
 		create_here_doc(pipes);
 		exit(EXIT_SUCCESS);
 	}
-	close(pipes->fd[0]);
 	dup2(pipes->fd[1], STDOUT_FILENO);
+	close(pipes->fd[1]);
 	process(pipes->argv[pipes->cmd], pipes->envp, pipes->fd);
+	exit(EXIT_FAILURE);
 }
 
 void	create_here_doc(t_pipex *pipes)
@@ -56,7 +57,6 @@ void	create_here_doc(t_pipex *pipes)
 			close(STDIN_FILENO);
 			free(line);
 			line = get_next_line(STDIN_FILENO);
-			line = NULL;
 			break ;
 		}
 		write(pipes->fd[1], line, ft_strlen(line));
@@ -77,14 +77,13 @@ void	create_process(t_pipex *pipes)
 		{
 			close(pipes->fd[0]);
 			child_bonus(pipes);
-			process(pipes->argv[pipes->cmd], pipes->envp, pipes->fd);
 		}
 		close(pipes->fd[1]);
 		dup2(pipes->fd[0], STDIN_FILENO);
 		close(pipes->fd[0]);
 		pipes->cmd++;
 	}
-	pipes->last_fd = open(pipes->argv[pipes->argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0777);
+	pipes->last_fd = open(pipes->argv[pipes->argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (pipes->last_fd == -1)
 		perror(OPEN_PARENT_ERROR);
 	dup2(pipes->last_fd, STDOUT_FILENO);
