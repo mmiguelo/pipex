@@ -12,103 +12,59 @@
 
 #include "pipex_bonus.h"
 
-pid_t	create_fork(t_pipex *pipes)
-{
-	pid_t	pid;
 
-	pid = fork();
-	if (pid == -1)
-	{
-		perror(FORK_ERROR);
-		close(pipes->fd[0]);
-	}
-	return (pid);
-}
-
-void	child_bonus(t_pipex *pipes)
-{
-	pipes->here_doc = false;
-	if (ft_strncmp(pipes->argv[1], "here_doc", 8) == 0 && pipes->cmd == 3)
-	{
-		create_here_doc(pipes);
-		exit(EXIT_SUCCESS);
-	}
-	dup2(pipes->fd[1], STDOUT_FILENO);
-	close(pipes->fd[1]);
-	process(pipes->argv[pipes->cmd], pipes->envp, pipes->fd);
-	exit(EXIT_FAILURE);
-}
 
 void	create_here_doc(t_pipex *pipes)
 {
-	const char	*limiter;
 	char		*line;
+	const char	*limiter;
 
-	limiter = pipes->argv[2];
 	close(pipes->fd[0]);
+	limiter = pipes->av[2];
 	while (1)
 	{
-		ft_printf("pipex_bonus here_doc> ");
+		ft_putstr_fd("here_doc> ", 1);
 		line = get_next_line(STDIN_FILENO);
 		if (!line)
 			break ;
-		if ((ft_strncmp(line, limiter, ft_strlen(limiter)) == 0) && line[ft_strlen(limiter)] == '\n')
+		if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0 && line[ft_strlen(limiter)] == '\n')
 		{
 			close(STDIN_FILENO);
 			free(line);
 			line = get_next_line(STDIN_FILENO);
 			break ;
 		}
-		write(pipes->fd[1], line, ft_strlen(line));
+		ft_putstr_fd(line, pipes->fd[1]);
 		free(line);
 		line = NULL;
 	}
 	close(pipes->fd[1]);
 }
 
-void	create_process(t_pipex *pipes)
+char	*search_path(char *cmd, char **env)
 {
-	while (pipes->cmd < pipes->argc - 2)
-	{
-		if (pipe(pipes->fd) == -1)
-			perror(PIPE_ERROR);
-		pipes->pid = create_fork(pipes);
-		if (pipes->pid == 0)
-		{
-			close(pipes->fd[0]);
-			child_bonus(pipes);
-		}
-		close(pipes->fd[1]);
-		dup2(pipes->fd[0], STDIN_FILENO);
-		close(pipes->fd[0]);
-		pipes->cmd++;
-	}
-	pipes->last_fd = open(pipes->argv[pipes->argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
-	if (pipes->last_fd == -1)
-		perror(OPEN_PARENT_ERROR);
-	dup2(pipes->last_fd, STDOUT_FILENO);
-	close(pipes->last_fd);
-	process(pipes->argv[pipes->cmd], pipes->envp, pipes->fd);
-}
+	char	**full_path;
+	char	*partial_path;
+	char	*temp;
+	int		i;
 
-void	start_here_doc(t_pipex *pipes)
-{
-	if (pipe(pipes->fd) == -1)
-		perror(PIPE_ERROR);
-	pipes->pid = fork();
-	if (pipes->pid == -1)
+	i = 0;
+	while (ft_strnstr(env[i], "PATH=", 5) == 0)
+		i++;
+	full_path = ft_split(env[i] + 5, ':' );
+	if (!full_path)
+		return (ft_putstr_fd("error in splitting search_path\n", 2), NULL);
+	i = 0;
+	while (full_path[i])
 	{
-		close(pipes->fd[0]);
-		close(pipes->fd[1]);
-		perror(FORK_ERROR);
+		temp = ft_strjoin(full_path[i], "/");
+		partial_path = ft_strjoin(temp, cmd);
+		free(temp);
+		if (access(partial_path, F_OK | X_OK) == 0)
+			return (ft_free(full_path), partial_path);
+		free(partial_path);
+		i++;
 	}
-	if (pipes->pid == 0)
-		create_here_doc(pipes);
-	else
-	{
-		close(pipes->fd[1]);
-		dup2(pipes->fd[0], STDIN_FILENO);
-		close(pipes->fd[0]);
-		create_process(pipes);
-	}
+	ft_free(full_path);
+	return (NULL);
 }

@@ -12,27 +12,27 @@
 
 #include "pipex_bonus.h"
 
-void	parse_bonus(char **envp, char **argv)
+void	parse_bonus(char **env, char **av)
 {
 	int	i;
 
-	if (!envp || !*envp)
+	if (!env || !*env)
 	{
 		ft_putstr_fd(ENVP_ERROR, 2);
 		exit(1);
 	}
 	i = 0;
-	while (envp[i] && ft_strnstr(envp[i], "PATH=", 5) == 0)
+	while (env[i] && ft_strnstr(env[i], "PATH=", 5) == 0)
 		i++;
-	if (!envp[i])
+	if (!env[i])
 	{
 		ft_putstr_fd(PATH_ERROR, 2);
 		exit(2);
 	}
 	i = -1;
-	while (argv[++i])
+	while (av[++i])
 	{
-		if (argv[i] && !argv[i][0])
+		if (av[i] && !av[i][0])
 		{
 			ft_putstr_fd(INPUT2_ERROR, 2);
 			exit(3);
@@ -41,12 +41,26 @@ void	parse_bonus(char **envp, char **argv)
 	return ;
 }
 
-void	ft_init_pipes(t_pipex *pipes, int argc, char **argv, char **envp)
+pid_t	create_fork(t_pipex *pipes)
 {
-	pipes->argc = argc;
-	pipes->argv = argv;
-	pipes->envp = envp;
-	if (ft_strcmp("here_doc", argv[1]) == 0)
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == -1)
+	{
+		perror(FORK_ERROR);
+		close(pipes->fd[0]);
+		close(pipes->fd[1]);
+	}
+	return (pid);
+}
+
+void	ft_init_pipes(t_pipex *pipes, int ac, char **av, char **env)
+{
+	pipes->ac = ac;
+	pipes->av = av;
+	pipes->env = env;
+	if (ft_strcmp("here_doc", av[1]) == 0)
 	{
 		pipes->here_doc = true;
 		pipes->cmd = 3;
@@ -58,74 +72,14 @@ void	ft_init_pipes(t_pipex *pipes, int argc, char **argv, char **envp)
 	}
 }
 
-int	open_file(char *file, int n)
+void	open_file(t_pipex *pipes)
 {
-	int	res;
-
-	if (n == 1)
-		res = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	if (n == 2)
-		res = open(file, O_WRONLY | O_CREAT | O_APPEND, 0777);
-	if (res == -1)
-	{
-		perror(file);
-		exit(4);
-	}
-	return (res);
-}
-
-void	process(char *av, char **envp, int *fd)
-{
-	char	**command;
-	char	*path;
-
-	command = ft_split(av, ' ');
-	path = search_path(command[0], envp);
-	if (!path)
-	{
-		ft_free(command);
-		perror(COMMAND_NOT_FOUND);
-		close(fd[0]);
-		close(fd[1]);
-		exit(3);
-	}
-	if (execve(path, command, envp) == -1)
-	{
-		ft_free(command);
-		free(path);
-		close(fd[0]);
-		close(fd[1]);		
-		perror(EXECVE_ERROR);
-		exit(4);
-	}
-}
-
-char	*search_path(char *command, char **envp)
-{
-	char	**full_path;
-	char	*partial_path;
-	char	*temp;
-	int		i;
-
-	i = 0;
-	while (ft_strnstr(envp[i], "PATH=", 5) == 0)
-		i++;
-	full_path = ft_split(envp[i] + 5, ':' );
-	if (!full_path)
-		return (NULL);
-	i = 0;
-	while (full_path[i])
-	{
-		temp = ft_strjoin(full_path[i], "/");
-		partial_path = ft_strjoin(temp, command);
-		free(temp);
-		if (access(partial_path, F_OK | X_OK) == 0)
-			return (ft_free(full_path), partial_path);
-		free(partial_path);
-		i++;
-	}
-	ft_free(full_path);
-	return (NULL);
+	if (ft_strncmp(pipes->av[1], "here_doc", 8) == 0)
+		pipes->last_fd = open(pipes->av[pipes->ac - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
+	else
+		pipes->last_fd = open(pipes->av[pipes->ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (pipes->last_fd == -1)
+		perror(OPEN_PARENT_ERROR);
 }
 
 void	ft_free(char **str)

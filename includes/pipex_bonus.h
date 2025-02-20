@@ -25,9 +25,9 @@
 
 typedef struct s_pipex
 {
-	int		argc;
-	char	**argv;
-	char	**envp;
+	int		ac;
+	char	**av;
+	char	**env;
 	int		cmd;
 	int		fd[2];
 	pid_t	pid;
@@ -54,10 +54,10 @@ typedef struct s_pipex
 #                               GENERAL                                        #
 #=============================================================================*/
 
-void	child_bonus(t_pipex *pipes);
+void	child_process(t_pipex *pipes);
 void	parent(int *fd, char **av, char **envp);
-void	process(char *argv, char **envp, int *fd);
-char	*search_path(char *command, char **envp);
+void	process(char *av, char **env, int *fd);
+char	*search_path(char *cmd, char **env);
 
 /*=============================================================================#
 #                               UTILS                                          #
@@ -72,8 +72,8 @@ void	ft_free(char **str);
 
 void	parse_bonus(char **envp, char **av);
 void	ft_init_pipes(t_pipex *pipes, int ac, char **av, char **envp);
-int		open_file(char *file, int n);
-void	main_process(char **av, char **envp);
+void	open_file(t_pipex *pipes);
+void	main_process(t_pipex *pipes);
 void	start_here_doc(t_pipex *pipes);
 void	create_here_doc(t_pipex *pipes);
 pid_t	create_fork(t_pipex *pipes);
