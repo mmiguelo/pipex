@@ -51,32 +51,28 @@ typedef struct s_pipex
 # define INPUT2_ERROR "Wrong input. Try ./pipex file1 cmd1 cmd2 file2"
 
 /*=============================================================================#
-#                               GENERAL                                        #
+#                              PIPEX BONUS                                     #
 #=============================================================================*/
 
-void	child_process(t_pipex *pipes);
-void	parent(int *fd, char **av, char **envp);
 void	process(char *av, char **env, int *fd);
+void	child_process(t_pipex *pipes);
+void	main_process(t_pipex *pipes);
+
+/*=============================================================================#
+#                               HERE_DOC                                       #
+#=============================================================================*/
+
+void	create_here_doc(t_pipex *pipes);
 char	*search_path(char *cmd, char **env);
 
 /*=============================================================================#
-#                               UTILS                                          #
-#=============================================================================*/
-
-int		parse(char **envp, char **argv);
-void	ft_free(char **str);
-
-/*=============================================================================#
-#                               BONUS                                          #
+#                               UTILS BONUS                                    #
 #=============================================================================*/
 
 void	parse_bonus(char **envp, char **av);
+pid_t	create_fork(t_pipex *pipes);
 void	ft_init_pipes(t_pipex *pipes, int ac, char **av, char **envp);
 void	open_file(t_pipex *pipes);
-void	main_process(t_pipex *pipes);
-void	start_here_doc(t_pipex *pipes);
-void	create_here_doc(t_pipex *pipes);
-pid_t	create_fork(t_pipex *pipes);
-void	create_process(t_pipex *pipes);
+void	ft_free(char **str);
 
 #endif
