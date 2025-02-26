@@ -23,7 +23,7 @@ LIBFT = ./my_libft/libft.a
 RM = rm -rf
 
 MANDATORY = pipex utils
-BONUS =	new_pipex_bonus new_utils_bonus here_doc_bonus
+BONUS =	pipex_bonus utils_bonus here_doc_bonus
 
 NAME = pipex
 
