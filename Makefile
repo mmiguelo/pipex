@@ -23,7 +23,7 @@ LIBFT = ./my_libft/libft.a
 RM = rm -rf
 
 MANDATORY = pipex utils
-BONUS =	new_pipex_bonus new_utils_bonus here_doc
+BONUS =	new_pipex_bonus new_utils_bonus here_doc_bonus
 
 NAME = pipex
 
@@ -32,7 +32,7 @@ NAME = pipex
 #==============================================================================#
 
 SRC_PATH 	= mandatory
-BONUS_PATH 	= new_bonus
+BONUS_PATH 	= bonus
 
 #==============================================================================#
 #                                    FILES                                     #
