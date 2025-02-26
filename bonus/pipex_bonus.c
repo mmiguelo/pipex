@@ -90,7 +90,7 @@ int	main(int ac, char **av, char **env)
 	if (ac < 5)
 		return (ft_putstr_fd(INPUT2_ERROR, 2), 1);
 	if ((ft_strncmp(av[1], "here_doc", 8) == 0 && ac < 6))
-		return (ft_putstr_fd(INPUT_ERROR, 2), 1);	
+		return (ft_putstr_fd(INPUT_ERROR, 2), 1);
 	ft_init_pipes(&pipes, ac, av, env);
 	parse_bonus(env, av);
 	if (pipes.here_doc)
