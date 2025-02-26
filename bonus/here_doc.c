@@ -27,7 +27,8 @@ void	create_here_doc(t_pipex *pipes)
 		line = get_next_line(STDIN_FILENO);
 		if (!line)
 			break ;
-		if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0 && line[ft_strlen(limiter)] == '\n')
+		if (ft_strncmp(line, limiter, ft_strlen(limiter)) == 0
+			&& line[ft_strlen(limiter)] == '\n')
 		{
 			close(STDIN_FILENO);
 			free(line);
