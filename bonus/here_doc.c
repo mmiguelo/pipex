@@ -12,8 +12,6 @@
 
 #include "pipex_bonus.h"
 
-
-
 void	create_here_doc(t_pipex *pipes)
 {
 	char		*line;
