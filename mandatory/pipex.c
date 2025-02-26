@@ -46,6 +46,7 @@ char	*search_path(char *command, char **envp)
 	ft_free(full_path);
 	return (NULL);
 }
+
 /**
  * @brief 
  * 
