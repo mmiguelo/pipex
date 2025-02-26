@@ -77,7 +77,8 @@ void	open_file(t_pipex *pipes)
 	if (ft_strncmp(pipes->av[1], "here_doc", 8) == 0)
 		pipes->last_fd = open(pipes->av[pipes->ac - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
 	else
-		pipes->last_fd = open(pipes->av[pipes->ac - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		pipes->last_fd = open(pipes->av[pipes->ac - 1],
+				O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (pipes->last_fd == -1)
 		perror(OPEN_PARENT_ERROR);
 }
